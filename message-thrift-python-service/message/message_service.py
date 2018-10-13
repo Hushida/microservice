@@ -12,8 +12,14 @@ class MessageServiceHandler:
     def sendEmailMessage(self, email, message):
         print "sendEmailMessage"
         return True
-if _name_ == '_main_':
+if __name__ == '_main_':
     handler = MessageServiceHandler()
     processor = MessageService.Processor(handler)
     transport = TSocket.TServerSocket(None, "9090")
-    tfactory - 
+    tfactory = TTransport.TFramedTransprotFactory()
+    pfacroty = TBinaryProtocol.TBinaryProtocolFactory()
+
+    server =  TServer.TSimpleServer(processor, transport, tfactory, pfacroty)
+    print("python  thrift server start")
+    server.serve()
+    print("python thrift server exit")
